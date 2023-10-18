@@ -113,8 +113,66 @@ const displayMessage = (input) => {
 					</pre>
 				</div>
 				<div class="col-12 col-lg-4">
-					<p>The code is structured in one function <code>displayMessage</code>.</p>
-					<p><code>displayMessage</code> displayes a sweetAlert when the button is pressed.</p>
+					<p class="display-6 text-center">Abstract</p>
+					<p>For this exercise I had to keep the following goals in mind:</p>
+					<ul>
+						<li>
+							The purpose of the exercise was to use loops intentionally, not to use the readymade methods leading to a
+							one line solution of
+							<code>input.split("").reverse().join("");</code>
+						</li>
+						<li>Get the input from the user.</li>
+						<li>If the input is invalid, display an error message.</li>
+						<li>If the input is valid, process it to reverse it.</li>
+						<li>Finally, display the reversed string.</li>
+					</ul>
+					<p class="display-6 text-center">Entry function</p>
+					<p>
+						The entry function for this app is <code>getValues</code> (line 1). In this function, I get the input value
+						from the DOM when the user clicks the button "Flip!". Once I had this value in Javascript, I checked to see
+						if this was a valid input by passing it as an argument in the function <code>validateInput</code> (line 3).
+						This function just returned the input's length which could then be used to check the truthy/falsey values in
+						conditionals. If the input was not valid, I'd fire off an error display function.
+					</p>
+					<p>
+						IF the input was valid, I'd arrive at the reversed string by calling <code>reverseMessage</code> function
+						(line 24). I'd then call the <code>displayMessage</code> function with the reversed string.
+					</p>
+
+					<p class="display-6 text-center">How I reversed the string</p>
+					<p>
+						The <code>reverseMessage</code> function (line 24) takes uses the parameter <code> input</code>. I
+						initialised an empty string variable <code>reversedString</code>. It's important for this identifier to not
+						be a <code>const</code> because the function relies on this being re-assigned later on.
+					</p>
+					<p>
+						Then, I ran a decrimental loop starting at <code>input.length - 1</code> (last character of the string) and
+						ending at <code>0</code> (first character of the string). After each iteration,I reduced <code>i</code> by
+						1.
+					</p>
+					<p>
+						Given that I was looping through the string backwards now, all I had to do was to add the individual
+						character (starting from the end of the string) to the empty string <code>reversedString</code>. It was
+						important for <code>reversedString</code> to be outside the for loop because <code>let</code> is block
+						scoped. Meaning, if it was declared inside the loop, there'd be no persistence of that variable between
+						different iterations of the loop and it'd be re-initialised each time. For it to be accessible by all the
+						iterations of the loop, it had to reside outside of the loop block.
+					</p>
+					<p>
+						Once the loop was done with all the iterations, I returned the <code>reversedString</code>. This
+						<code>return</code> would allow the rest of the code to assign the reversed string to a variable outside
+						this function.
+					</p>
+					<p class="display-6 text-center">How I displayed the string</p>
+					<p>
+						Finally, in the <code>displayMessage</code> function (line 35), I accessed the DOM elements with ID's
+						<code>alert</code> and <code>msg</code> respectively. I removed the <code>invisible</code> class from the
+						alert box, which is the parent element of the <code>msg</code>. I then called the
+						<code>innerText</code> method on the <code>msg</code> element to change its content to a dynamically
+						constructed string. This string showed the parameter <code>input</code> of this function. So when I call
+						this function on line 7 with <code>reversedMessage</code> I end up displaying the reversed string.
+					</p>
+					<p>And that completes the functionality of this app.</p>
 				</div>
 			</div>
 		</main>
